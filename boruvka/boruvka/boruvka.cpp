@@ -48,7 +48,7 @@ A visual representation of the weighted graph contained in graph.txt
 #include <set>
 
 
-// Input file. Expects a single comma separated point per line
+// Input file. Expects a single comma separated weighted edge per line
 std::ifstream input("graph.txt");
 
 // Representation of a weighted edge
