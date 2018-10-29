@@ -164,9 +164,7 @@ graph = [
 
 # pass the # of vertices and the graph to run prims algorithm
 mst = prims(10, graph, 2)
-print("Spanning Tree: ", mst)
-print("Total cost: ", sum(mst))
+print "Prim\'s MST: {} Cost: {}".format(mst, sum(mst))
 
 mst = kruskal(10, graph, 2)
-print("Spanning Tree: ", mst)
-print("Total cost: ", sum(mst))
+print "Kruskal\'s MST: {} Cost: {}".format(mst, sum(mst))
