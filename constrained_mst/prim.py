@@ -3,6 +3,11 @@
 # CSCI-7432 - Algorithms and Data Structures
 # Paul Bupe
 
+import networkx as nx
+import random
+
+
+
 parent, rank = {}, {}
 
 # create adjacency matrix for use in prims algorithm
@@ -162,9 +167,38 @@ graph = [
     [i, j, 9]
 ]
 
-# pass the # of vertices and the graph to run prims algorithm
-mst = prims(10, graph, 2)
-print "Prim\'s MST: {} Cost: {}".format(mst, sum(mst))
+graph_size = 100;
 
-mst = kruskal(10, graph, 2)
-print "Kruskal\'s MST: {} Cost: {}".format(mst, sum(mst))
+prim_count = 0
+krus_count = 0
+
+for x in range(1000):
+    # k = nx.complete_graph(5)
+    k = nx.fast_gnp_random_graph(graph_size, .7, False)
+
+    e = k.edges.data()
+    rand_graph = list(e)
+
+    for i, v in enumerate(rand_graph):
+        rand_graph[i] = list(rand_graph[i])
+        rand_graph[i][2] = random.randint(1, 101)
+
+    for y in range(2,20):
+        prim_mst = sum(prims(graph_size, rand_graph, y))
+        kru_mst = sum(kruskal(graph_size, rand_graph, y))
+
+        if prim_mst != 0 or kru_mst != 0:
+            if prim_mst != 0:
+                prim_count+=1
+            if kru_mst != 0:
+                krus_count+=1
+            break
+
+print("Prim: {} | Krus: {}".format(prim_count, krus_count))
+    # pass the # of vertices and the graph to run prims algorithm
+
+    # print("Prim\'s MST: {} Cost: {}".format(mst, sum(mst)))
+
+    # mst = kruskal(graph_size, rand_graph, 5)
+    # print("Kruskal\'s MST: {} Cost: {}".format(mst, sum(mst)))
+
